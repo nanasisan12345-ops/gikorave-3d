@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
   <head>
     <meta charset="utf-8">
@@ -52,16 +52,20 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/WebGL.loader.js";
+      var buildStamp = "20260620-210439";
+      function versionedBuildAsset(path) {
+        return path + "?v=" + encodeURIComponent(buildStamp);
+      }
+      var loaderUrl = versionedBuildAsset(buildUrl + "/WebGL.loader.js");
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/WebGL.data",
-        frameworkUrl: buildUrl + "/WebGL.framework.js",
-        codeUrl: buildUrl + "/WebGL.wasm",
+        dataUrl: versionedBuildAsset(buildUrl + "/WebGL.data"),
+        frameworkUrl: versionedBuildAsset(buildUrl + "/WebGL.framework.js"),
+        codeUrl: versionedBuildAsset(buildUrl + "/WebGL.wasm"),
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "GikoRave3D_Unity",
-        productVersion: "0.1.0",
+        productVersion: "0.1.0-" + buildStamp,
         showBanner: unityShowBanner,
         // errorHandler: function(err, url, line) {
         //    alert("error " + err + " occurred at line " + line);
@@ -131,3 +135,4 @@
     </script>
   </body>
 </html>
+
